@@ -5,6 +5,11 @@ fn main() {
     println!("time of red light is : {}", redlight.gettime());
     println!("time of green light is : {}", greenlight.gettime());
     println!("time of yellow light is : {}", yellowlight.gettime());
+    
+    //or we can use the trait as the parameter
+    notify(redlight);
+    notify(greenlight);
+    notify(yellowlight);
 }
 
 enum TrafficLight{
@@ -26,4 +31,7 @@ impl Time for TrafficLight{
 
       }
     }
+}
+pub fn notify(item: impl Time) {
+  println!("time of the light is {}", item.gettime());
 }
