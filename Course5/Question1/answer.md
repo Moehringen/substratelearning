@@ -18,43 +18,34 @@
 
    以bool为例,bool 类型定义：
 
-    'decl_storage! {
-
-        'trait Store for Module<T: Trait> as DataTypeModule {
-
-        '// init to false, store boolean value
-
-        'MyBool get(fn my_bool): bool;
-
-        '}
-
-    '}
+    ```
+    decl_storage! {
+        trait Store for Module<T: Trait> as DataTypeModule {
+        // init to false, store boolean value
+        MyBool get(fn my_bool): bool;
+        }
+    }
+    ```
 
 - 简单映射: map 类型，用来保存键值对，单值类型都可以用作key或者value
 
-    'decl_storage! {
-
-        'trait Store for Module<T: Trait> as DataTypeModule {
-
-        'MyMap get(fn my_map): map hasher(twox_64_concat) u8 =>
-
-        'Vec<u8>;
-
-        '}
-
-    '}
+    ```
+    decl_storage! {
+        trait Store for Module<T: Trait> as DataTypeModule {
+        MyMap get(fn my_map): map hasher(twox_64_concat) u8 =>
+        Vec<u8>;
+        }
+    }
+    ```
 
 - 双键映射: double_map 类型，使用两个key来索引value，用于快速删除key1对应的任意记
 录，也可以遍历key1对应的所有记录
-
-    'decl_storage! {
-
-        'trait Store for Module<T: Trait> as DataTypeModule {
-
-        'MyDoubleMap get(fn my_double_map): double_map hasher
-
-        '(blake2_128_concat) T::AccountId, hasher(blake2_128_concat) u32 => Vec<u8>;
-
-        '}
-        
-    '}
+    
+    ```
+    decl_storage! {
+        trait Store for Module<T: Trait> as DataTypeModule {
+        MyDoubleMap get(fn my_double_map): double_map hasher
+        (blake2_128_concat) T::AccountId, hasher(blake2_128_concat) u32 => Vec<u8>;
+        }
+    }
+    ```
